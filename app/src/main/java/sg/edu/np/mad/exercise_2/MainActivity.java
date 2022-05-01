@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (initUser.followed == true ){
                     initUser.followed = false;
-                    followButton.setText("Follow");
+                    followButton.setText(words[1]);
                     Log.v(Tag, "Status change to Follow.");
                 } else {
-                    initUser.followed = false;
-                    followButton.setText("Unfollow");
+                    initUser.followed = true;
+                    followButton.setText(words[0]);
                     Log.v(Tag, "Status change to Unfollow.");
                 }
             }
