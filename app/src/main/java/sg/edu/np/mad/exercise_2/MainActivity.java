@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        User initUser = new User(words[1],words[0] + " state", 0,false);
+        User initUser = new User(words[1],words[0] + " state", 0,true);
 
         Button followButton = (Button)findViewById(R.id.followButton);
         followButton.setText(initUser.name);
@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (initUser.followed == true ){
                     initUser.followed = false;
-                    followButton.setText(words[1]);
-                    Log.v(Tag, "Status change to Follow.");
+                    followButton.setText(words[0]);
+                    Log.v(Tag, "Status change to Unfollow = " + initUser.followed);
                 } else {
                     initUser.followed = true;
-                    followButton.setText(words[0]);
-                    Log.v(Tag, "Status change to Unfollow.");
+                    followButton.setText(words[1]);
+                    Log.v(Tag, "Status change to Follow = " + initUser.followed);
                 }
             }
         });
