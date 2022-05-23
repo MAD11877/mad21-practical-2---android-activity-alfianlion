@@ -4,4 +4,7 @@
     <string name="followButton">follow</string>
     <string name="messageButton">Message</string>
     <string name="avatarPicture">avatar</string>
+    <string name="desc">descTo</string>
+    <string name="todoList2">TODOList2</string>
+    <string name="todo">TODO</string>
 </resources>

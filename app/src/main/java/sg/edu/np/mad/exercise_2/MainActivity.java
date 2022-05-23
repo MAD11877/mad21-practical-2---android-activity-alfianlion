@@ -3,11 +3,16 @@ package sg.edu.np.mad.exercise_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.icu.lang.UProperty;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,22 +40,41 @@ public class MainActivity extends AppCompatActivity {
 
         User initUser = new User(words[1],words[0] + " state", 0,true);
 
+        Intent receivingIntent = getIntent();
+        Double intentMsg = receivingIntent.getDoubleExtra("randomNumber",0);
+
+        TextView displayTxt = (TextView)findViewById(R.id.textView2);
+        Log.v(Tag, "Intent Msg: " + intentMsg);
+        displayTxt.setText("MAD " + intentMsg);
+
         Button followButton = (Button)findViewById(R.id.followButton);
         followButton.setText(initUser.name);
 
         Button messageButton = (Button)findViewById(R.id.messageButton);
 
-        followButton.setOnClickListener(new View.OnClickListener() {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            messageButton.setVisibility(View.GONE);
+            followButton.setVisibility(View.GONE);
+        } else {
+            messageButton.setVisibility(View.VISIBLE);
+            followButton.setVisibility(View.VISIBLE);
+        }
+
+
+            followButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (initUser.followed == true ){
                     initUser.followed = false;
                     followButton.setText(words[0]);
                     Log.v(Tag, "Status change to Unfollow = " + initUser.followed);
+                    Toast.makeText(MainActivity.this, words[0], Toast.LENGTH_SHORT).show();
                 } else {
                     initUser.followed = true;
                     followButton.setText(words[1]);
                     Log.v(Tag, "Status change to Follow = " + initUser.followed);
+                    Toast.makeText(MainActivity.this, words[1], Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
